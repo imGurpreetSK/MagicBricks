@@ -33,4 +33,6 @@ dependencies {
     compile project(':commonwidget')
     compile project(':panowidget')
     compile project(':base')
+    compile 'info.hoang8f:fbutton:1.0.5'
+
 }

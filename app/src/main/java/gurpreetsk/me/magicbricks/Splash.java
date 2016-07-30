@@ -47,7 +47,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
     private void startNextActivity() {
 
-        Intent intent = new Intent(Splash.this, MainActivity.class);
+        Intent intent = new Intent(Splash.this, RentOrBuy.class);
         //intent.putExtra();
         startActivity(intent);
 
