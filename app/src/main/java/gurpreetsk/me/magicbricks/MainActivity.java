@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
                     final Intent intent = new Intent(MainActivity.this, MapsActivity.class);
 
-                    msg = "LONGER THAN 15";
                     replyTV = new TextView(MainActivity.this);
                     linearLayout.addView(replyTV, layoutParamsSender);
                     replyTV.setGravity(Gravity.START);
@@ -138,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     replyTV = new TextView(MainActivity.this);
                     //reply = giveReply(msg);
 
-                    String needed, toBeSent;
+                    String needed;
                     String loc, siz, bud;
 
                     String replyString = "Please enter some data.";
@@ -151,30 +150,30 @@ public class MainActivity extends AppCompatActivity {
                     else if (cityNeeded.equals("") && !locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded;
                         needed = "location";
-                        toBeSent = locationNeeded;
+//                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENT", toBeSent);
+                        intent.putExtra("SENT", locationNeeded);
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded;
                         needed = "city";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENT", toBeSent);
+                        intent.putExtra("SENT", cityNeeded);
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in budget " + budgetneeded;
                         needed = "budget";
-                        toBeSent = budgetneeded;
+//                        toBeSent = budgetneeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENT", toBeSent);
+                        intent.putExtra("SENT", budgetneeded);
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && !sizeNeeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded;
                         needed = "size";
-                        toBeSent = sizeNeeded;
+//                        toBeSent = sizeNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENT", toBeSent);
+                        intent.putExtra("SENT", sizeNeeded);
 //                        reply = replyString;
                     }
 
@@ -188,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     }else if (cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded + " of size " + sizeNeeded;
                         needed = "location and size";
-                        toBeSent = locationNeeded;
+//                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
@@ -196,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded + " in budget " + budgetneeded;
                         needed = "size and budget";
-                        toBeSent = sizeNeeded;
+//                        toBeSent = sizeNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
@@ -204,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " of size " + sizeNeeded;
                         needed = "city and size";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
@@ -212,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     }  else if (cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded + " in budget " + budgetneeded;
                         needed = "location and budget";
-                        toBeSent = locationNeeded;
+//                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
@@ -220,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " in budget " + budgetneeded;
                         needed = "city and budget";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
@@ -230,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                     else if (!cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " in budget " + budgetneeded +" of size "+sizeNeeded;
                         needed = "city size location";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
@@ -239,15 +238,15 @@ public class MainActivity extends AppCompatActivity {
                     }else if (!cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " in locality "+ locationNeeded +" in budget " + budgetneeded;
                         needed = "city location budget";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTLOC", toBeSent);
+                        intent.putExtra("SENTLOC", cityNeeded);
                         intent.putExtra("SENTSIZ", budgetneeded);
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " of size "+ sizeNeeded +" in budget " + budgetneeded;
                         needed = "city budget size";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
@@ -256,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                     }else if (cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded + " at location " + locationNeeded +" in budget " + budgetneeded;
                         needed = "location budget size";
-                        toBeSent = cityNeeded;
+//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
@@ -268,12 +267,12 @@ public class MainActivity extends AppCompatActivity {
                     else if (!cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {              //MAIN FOCUS HERE
                         reply = "Finding houses in " + cityNeeded + " locality " + locationNeeded + " of size " + sizeNeeded + " in budget " + budgetneeded;
                         needed = "all";
-                        toBeSent = "all";
+//                        toBeSent = "all";
                         loc = locationNeeded;
                         siz = sizeNeeded;
                         bud = budgetneeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENT", toBeSent);
+                        intent.putExtra("SENT", "all");
                         intent.putExtra("CITY", cityNeeded);
                         intent.putExtra("LOC", loc);
                         intent.putExtra("SIZ", siz);
@@ -349,6 +348,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void createCityArrayList() {
+        cities = new ArrayList<>();
         cities.add("hyderabad");
         cities.add("delhi");
         cities.add("ahmedabad");
@@ -361,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void createLocationsArrayList() {
+        locations = new ArrayList<>();
         locations.add("miyapur");
         locations.add("adibatla");
         locations.add("subhash");
