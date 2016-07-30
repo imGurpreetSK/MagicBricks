@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
+        android:id="@+id/add"
+        android:textSize="18dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
         android:id="@+id/covArea"
         android:textSize="18dp" />
     <TextView
@@ -81,4 +91,42 @@
         android:text="Large Text"
         android:id="@+id/locality"
         android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="VIEW MORE"
+        android:id="@+id/textView"
+        android:textColor="#6f00ff"
+        android:layout_marginTop="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/moreview"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waiting for response.."
+            android:id="@+id/propertyType"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/posted"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/locNm"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/desc"
+            android:textSize="18dp" />
+    </LinearLayout>
 </LinearLayout>
+</ScrollView>

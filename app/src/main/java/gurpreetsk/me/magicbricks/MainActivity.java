@@ -6,12 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 linearLayout.addView(inputTV, layoutParamsSender);
                 inputTV.setGravity(Gravity.END);
                 inputTV.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                inputTV.setTextSize(18);
+                inputTV.setTextSize(16);
                 inputTV.setTextColor(Color.parseColor("#0277BD"));         //Use #558B2F for bot reply
                 inputTV.setText(msg);
                 msgET.setText("");
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 //WHAT WE SAY
                 LinearLayout.LayoutParams layoutParamsBot = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParamsBot.setMarginStart(15);
-                layoutParamsBot.setMarginEnd(100);
+//                layoutParamsBot.setMarginEnd(100);
 
                 if (msg.length() < 15) {
                     msg = msg.toLowerCase();
@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity {
                     replyTV = new TextView(MainActivity.this);
                     linearLayout.addView(replyTV, layoutParamsSender);
                     replyTV.setGravity(Gravity.START);
-                    replyTV.setTextSize(18);
+                    replyTV.setTextSize(16);
                     replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
                     replyTV.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC);
-                    replyTV.setText(msg);
+//                    replyTV.setText(msg);
 
                     String locationNeeded = "", cityNeeded = "";
                     String budgetneeded = "", sizeNeeded = "";
@@ -138,17 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
                     String needed;
                     String loc, siz, bud;
-                    String CITY = city.get(Splash.tellCity()).toString();
+                    String CITY = city.get(Splash.tellCity()).toString();       //TODO: DIKKAT
 
                     String replyString = "Please enter some data.";
                     if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = replyString;
+                        needed = "nothing";
                         intent.putExtra("NEED", "nothing");
                         intent.putExtra("SENT", "nothing");
                         intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: nothing SENT: nothing", Toast.LENGTH_SHORT).show();
                     }
-//ae haalo
+
                     else if (cityNeeded.equals("") && !locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded;
                         needed = "location";
@@ -317,26 +318,27 @@ public class MainActivity extends AppCompatActivity {
                     replyTV.setTextColor(Color.parseColor("#558B2F"));
                     linearLayout.addView(replyTV, layoutParamsBot);
 
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("Found results")
-                                    .setMessage("Click to go to the results")
-                                    .setPositiveButton("GO", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
+                    if(!intent.getExtras().get("NEED").equals("nothing")) {
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("Found results")
+                                        .setMessage("Click to go to the results")
+                                        .setPositiveButton("GO", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
 //                                        checkMessage(msg.toLowerCase());
-
-                                            startActivity(intent);
-                                            Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
-                                        }
-                                    })
-                                    .setIcon(android.R.drawable.ic_menu_view)
-                                    .show();
-                        }
-                    }, 2000);
-
+                                                intent.putExtra("EXTRA", "SUGGEST");
+                                                startActivity(intent);
+                                                Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setIcon(android.R.drawable.ic_menu_view)
+                                        .show();
+                            }
+                        }, 2000);
+                    }
                 }
 
             }
@@ -382,6 +384,9 @@ public class MainActivity extends AppCompatActivity {
         roomSize.add("1bhk");
         roomSize.add("2bhk");
         roomSize.add("3bhk");
+        roomSize.add("1 bhk");
+        roomSize.add("2 bhk");
+        roomSize.add("3 bhk");
         //roomSize.add("");
     }
 
@@ -455,13 +460,18 @@ public class MainActivity extends AppCompatActivity {
     private void checkMessage(String msg) {             //FOR Hi related
 
         String CITY = city.get(Splash.tellCity()).toString();
+        Log.v(TAG, CITY);
+//        String CITY = "7045";
 
         switch (msg) {
+//            case CITY:
+
             case "1":
             case "1.":
             case "location": {
                 Toast.makeText(MainActivity.this, "Location" + CITY, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("what", "location");
                 intent.putExtra("BOTmsg", "location");
                 intent.putExtra("BOTcity", CITY);
                 startActivity(intent);
@@ -499,8 +509,13 @@ public class MainActivity extends AppCompatActivity {
                     budget = "20000";
                 }else if (msg.contains("25000")) {
                     budget = "25000";
+                }else if (msg.contains("30000")) {
+                    budget = "30000";
+                }else if (msg.contains("40000")) {
+                    budget = "40000";
                 }
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("what", "budget");
                 intent.putExtra("BOTmsg", budget);
                 intent.putExtra("BOTcity", CITY);
                 Toast.makeText(MainActivity.this, budget + CITY, Toast.LENGTH_SHORT).show();
@@ -519,17 +534,47 @@ public class MainActivity extends AppCompatActivity {
                 if (msg.charAt(1) == ' ') {
                     msg = msg.charAt(0) + "bhk";
                 }
+                intent.putExtra("what", "bhk");
                 intent.putExtra("BOTmsg", msg);
                 intent.putExtra("BOTcity", CITY);
                 Toast.makeText(MainActivity.this, msg + CITY, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
             }
+
         }
     }
 
     private String giveReply(String msg) {
-
+        switch(msg) {
+            case "hyderabad":
+                Splash.setCity("hyderabad");
+                break;
+            case "delhi":
+                Splash.setCity("delhi");
+                break;
+            case "ahmedabad":
+                Splash.setCity("ahmedabad");
+                break;
+            case "gurgaon":
+                Splash.setCity("gurgaon");
+                break;
+            case "bangalore":
+                Splash.setCity("bangalore");
+                break;
+            case "mumbai":
+                Splash.setCity("mumbai");
+                break;
+            case "pune":
+                Splash.setCity("pune");
+                break;
+            case "kolkata":
+                Splash.setCity("kolkata");
+                break;
+            case "noida":
+                Splash.setCity("noida");
+                break;
+        }
         return Splash.returnData(msg);
 
     }
