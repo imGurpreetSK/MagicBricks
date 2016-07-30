@@ -29,7 +29,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
     private static Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
     private static Location mLastLocation;
-    private static String citySplash;
+    private static String citySplash = "noida";
     Double latitude, longitude;
 
     @Override
@@ -131,58 +131,58 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
                 //starting call to bot: level-0
                 learning.put("hi", "Hello!  Welcome to PropertyBot.\nPlease enter your city");
-                learning.put("hello", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("/hello", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("start", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("/start", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("bonjour", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("suggest", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("hello", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("/hello", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("start", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("/start", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("bonjour", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("suggest", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
 
                 learning.put("delhi", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "delhi";
+                        "3. No. of rooms");
                 learning.put("hyderabad", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "hyderabad";
+                        "3. No. of rooms");
                 learning.put("ahmedabad", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "ahmedabad";
+                        "3. No. of rooms");
                 learning.put("gurgaon", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "gurgaon";
+                        "3. No. of rooms");
                 learning.put("bangalore", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "banglore";
+                        "3. No. of rooms");
                 learning.put("mumbai", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "mumbai";
+                        "3. No. of rooms");
                 learning.put("pune", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "pune";
+                        "3. No. of rooms");
                 learning.put("pune", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "pune";
+                        "3. No. of rooms");
                 learning.put("noida", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
-                        "3. No. of rooms");     citySplash = "noida";
+                        "3. No. of rooms");
 
                 //level-1 calls
                 learning.put("1", "location");
@@ -213,7 +213,11 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("15000-20000", "Getting locations near you...");
                 learning.put("b/w 5000-10000", "Getting locations near you...");
                 learning.put("b/w 10000-15000", "Getting locations near you...");
-                learning.put("b/w 15000-20000", "Getting locations near you...");       //for budget details
+                learning.put("b/w 15000-20000", "Getting locations near you...");
+                learning.put("25000", "Getting locations near you...");
+                learning.put("30000", "Getting locations near you...");
+                learning.put("35000", "Getting locations near you...");
+                learning.put("40000", "Getting locations near you...");          //for budget details
 
                 learning.put("1bhk", "Getting locations near you...");
                 learning.put("2bhk", "Getting locations near you...");

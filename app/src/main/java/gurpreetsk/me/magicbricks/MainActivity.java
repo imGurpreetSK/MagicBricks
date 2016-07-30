@@ -5,19 +5,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -330,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
                                         .setPositiveButton("GO", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
 //                                        checkMessage(msg.toLowerCase());
-                                                intent.putExtra("SUGGEST", "SUGGEST");
+                                                intent.putExtra("EXTRA", "SUGGEST");
                                                 startActivity(intent);
                                                 Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
                                             }
@@ -385,6 +383,9 @@ public class MainActivity extends AppCompatActivity {
         roomSize.add("1bhk");
         roomSize.add("2bhk");
         roomSize.add("3bhk");
+        roomSize.add("1 bhk");
+        roomSize.add("2 bhk");
+        roomSize.add("3 bhk");
         //roomSize.add("");
     }
 
@@ -469,6 +470,7 @@ public class MainActivity extends AppCompatActivity {
             case "location": {
             Toast.makeText(MainActivity.this, "Location" + CITY, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("what", "location");
                 intent.putExtra("BOTmsg", "location");
                 intent.putExtra("BOTcity", CITY);
                 startActivity(intent);
@@ -512,6 +514,7 @@ public class MainActivity extends AppCompatActivity {
                     budget = "40000";
                 }
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("what", "budget");
                 intent.putExtra("BOTmsg", budget);
                 intent.putExtra("BOTcity", CITY);
                 Toast.makeText(MainActivity.this, budget + CITY, Toast.LENGTH_SHORT).show();
@@ -530,43 +533,13 @@ public class MainActivity extends AppCompatActivity {
                 if (msg.charAt(1) == ' ') {
                     msg = msg.charAt(0) + "bhk";
                 }
+                intent.putExtra("what", "bhk");
                 intent.putExtra("BOTmsg", msg);
                 intent.putExtra("BOTcity", CITY);
                 Toast.makeText(MainActivity.this, msg + CITY, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
             }
-
-            /*
-            city.put("hyderabad", 2060);
-        city.put("delhi", 2624);
-        city.put("ahmedabad", 2690);
-        city.put("gurgaon", 2951);
-        city.put("bangalore", 3327);
-        city.put("mumbai", 4320);
-        city.put("pune", 4378);
-        city.put("kolkata", 6903);
-        city.put("noida", 7045);
-             */
-/*
-            case "hyderabad":   CITY = "2060";
-                break;
-            case "delhi":   CITY = "2624";
-                break;
-            case "ahmedabad":   CITY = "2690";
-                break;
-            case "gurgaon":   CITY = "2951";
-                break;
-            case "bangalore":   CITY = "3327";
-                break;
-            case "mumbai":   CITY = "4320";
-                break;
-            case "pune":   CITY = "4378";
-                break;
-            case "kolkata":   CITY = "6903";
-                break;
-            case "noida":   CITY = "7045";
-                break;*/
 
         }
     }
