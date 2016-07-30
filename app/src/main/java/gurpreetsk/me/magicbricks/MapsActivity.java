@@ -69,7 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(userlat, userlon);
         mMap.addMarker(new MarkerOptions().position(sydney).title("You are here"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14.0f));*/
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));*/
 
         try {
             String intentResult = getIntent().getExtras().getString("NEED"); //TODO: ADD AND CHANGE KEYS HERE
@@ -96,6 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -150,6 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             LatLng sydney = new LatLng(lati, longi);
                                             mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                         }
                                     }
                                 } catch (Exception e) {
@@ -206,6 +208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -261,6 +264,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -316,6 +320,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -375,6 +380,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -432,6 +438,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -489,6 +496,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -550,6 +558,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         LatLng sydney = new LatLng(lati, longi);
                                         mMap.addMarker(new MarkerOptions().position(sydney).title(contact));
                                         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 11.0f));
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
