@@ -37,7 +37,7 @@ import java.util.Map;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private static final String FETCHURL = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=2624&resultPerPage=16&searchType=1&cg=R&ty=10002";
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +76,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             System.out.println("ANDROID"+intentResult);
 
             if (intentResult.equals("nothing")) {
-
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=2624&resultPerPage=16&searchType=1&cg=R&ty=10002";
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        FETCHURL,
+                        url ,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -129,8 +129,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else if (intentResult.equals("city")) {
                 String city = getIntent().getExtras().getString("SENT");
                 System.out.println("DAMAN"+city);
+                url="http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002";
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002",
+                        url  ,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -185,8 +186,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 int budgetsent = Integer.parseInt(bgmx);
                 int budgetminus = budgetsent - 5000;
                 String bgmn = String.valueOf(budgetminus);
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=7045&resultPerPage=16&searchType=1&cg=R&ty=10002&bgmn=" + bgmn + "&bgmx=" + bgmx;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=7045&resultPerPage=16&searchType=1&cg=R&ty=10002&bgmn=" + bgmn + "&bgmx=" + bgmx,
+                        url  ,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -239,8 +241,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println(size);
                 String sub = size.substring(0, 1);
                 System.out.println(sub);
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=7045&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=7045&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub,
+                        url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -293,8 +296,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println(city);
                 String loc = getIntent().getExtras().getString("SENTLOC");
                 System.out.println(loc);
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&lt=" + loc + "&resultPerPage=16&searchType=1&cg=R&ty=10002";
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&lt=" + loc + "&resultPerPage=16&searchType=1&cg=R&ty=10002",
+                        url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -351,8 +355,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println(size);
                 String sub = size.substring(0, 1);
                 System.out.println(sub);
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=7045&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub + "&bgmn=" + bgmn + "&bgmx=" + bgmx;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=7045&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub + "&bgmn=" + bgmn + "&bgmx=" + bgmx,
+                        url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -407,8 +412,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println(size);
                 String sub = size.substring(0, 1);
                 System.out.println(sub);
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub,
+                        url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -463,8 +469,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 int budgetsent = Integer.parseInt(bgmx);
                 int budgetminus = budgetsent - 5000;
                 String bgmn = String.valueOf(budgetminus);
+                url =  "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002&bgmn=" + bgmn + "&bgmx=" + bgmx;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002&bgmn=" + bgmn + "&bgmx=" + bgmx,
+                        url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -523,8 +530,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println(size);
                 String sub = size.substring(0, 1);
                 System.out.println(sub);
+                url = "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub + "&bgmn=" + bgmn + "&bgmx=" + bgmx;
                 StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                        "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + city + "&resultPerPage=16&searchType=1&cg=R&ty=10002&bd=" + sub + "&bgmn=" + bgmn + "&bgmx=" + bgmx,
+                        url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -583,7 +591,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     cityDaman = getIntent().getExtras().getString("BOTcity");
                     System.out.println("Gurpreet"+cityDaman);
                     StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                            "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=" + cityDaman + "&resultPerPage=16&searchType=1&cg=R&ty=10002",
+                            url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

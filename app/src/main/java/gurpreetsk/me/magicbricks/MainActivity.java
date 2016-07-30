@@ -11,11 +11,13 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String needed;
                     String loc, siz, bud;
-                    String CITY = city.get(Splash.tellCity()).toString();
+                    String CITY = city.get(Splash.tellCity()).toString();       //TODO: DIKKAT
 
                     String replyString = "Please enter some data.";
                     if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
@@ -456,8 +458,12 @@ public class MainActivity extends AppCompatActivity {
     private void checkMessage(String msg) {             //FOR Hi related
 
         String CITY = city.get(Splash.tellCity()).toString();
+        Log.v(TAG, CITY);
+//        String CITY = "7045";
 
         switch (msg) {
+//            case CITY:
+
             case "1":
             case "1.":
             case "location": {
@@ -526,11 +532,71 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             }
+
+            /*
+            city.put("hyderabad", 2060);
+        city.put("delhi", 2624);
+        city.put("ahmedabad", 2690);
+        city.put("gurgaon", 2951);
+        city.put("bangalore", 3327);
+        city.put("mumbai", 4320);
+        city.put("pune", 4378);
+        city.put("kolkata", 6903);
+        city.put("noida", 7045);
+             */
+/*
+            case "hyderabad":   CITY = "2060";
+                break;
+            case "delhi":   CITY = "2624";
+                break;
+            case "ahmedabad":   CITY = "2690";
+                break;
+            case "gurgaon":   CITY = "2951";
+                break;
+            case "bangalore":   CITY = "3327";
+                break;
+            case "mumbai":   CITY = "4320";
+                break;
+            case "pune":   CITY = "4378";
+                break;
+            case "kolkata":   CITY = "6903";
+                break;
+            case "noida":   CITY = "7045";
+                break;*/
+
         }
     }
 
     private String giveReply(String msg) {
-
+        switch(msg) {
+            case "hyderabad":
+                Splash.setCity("hyderabad");
+                break;
+            case "delhi":
+                Splash.setCity("delhi");
+                break;
+            case "ahmedabad":
+                Splash.setCity("ahmedabad");
+                break;
+            case "gurgaon":
+                Splash.setCity("gurgaon");
+                break;
+            case "bangalore":
+                Splash.setCity("bangalore");
+                break;
+            case "mumbai":
+                Splash.setCity("mumbai");
+                break;
+            case "pune":
+                Splash.setCity("pune");
+                break;
+            case "kolkata":
+                Splash.setCity("kolkata");
+                break;
+            case "noida":
+                Splash.setCity("noida");
+                break;
+        }
         return Splash.returnData(msg);
 
     }

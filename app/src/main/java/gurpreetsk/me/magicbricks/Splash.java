@@ -29,7 +29,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
     private static Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
     private static Location mLastLocation;
-    private static String citySplash = "noida";
+    private static String citySplash;
     Double latitude, longitude;
 
     @Override
@@ -158,7 +158,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                         "1. Location\n" +
                         "2. Budget\n" +
                         "3. No. of rooms");     citySplash = "gurgaon";
-                learning.put("banglore", "Hello!  Welcome to PropertyBot.\n" +
+                learning.put("bangalore", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
@@ -233,6 +233,10 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
     public static String tellCity(){
         return citySplash;
+    }
+
+    public static void setCity(String city){
+        citySplash = city;
     }
 
     @Override
