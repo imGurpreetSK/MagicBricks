@@ -533,7 +533,8 @@ public class MainActivity extends AppCompatActivity {
                 if (msg.charAt(1) == ' ') {
                     msg = msg.charAt(0) + "bhk";
                 }
-                intent.putExtra("what", "bhk");
+                intent.putExtra("wh" +
+                        "at", "bhk");
                 intent.putExtra("BOTmsg", msg);
                 intent.putExtra("BOTcity", CITY);
                 Toast.makeText(MainActivity.this, msg + CITY, Toast.LENGTH_SHORT).show();
