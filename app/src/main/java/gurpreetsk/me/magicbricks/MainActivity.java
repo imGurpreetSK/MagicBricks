@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         reply = replyString;
                         intent.putExtra("NEED", "nothing");
                         intent.putExtra("SENT", "nothing");
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: nothing SENT: nothing", Toast.LENGTH_SHORT).show();
                     }
 
@@ -300,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("LOC", loc);
                         intent.putExtra("SIZ", siz);
                         intent.putExtra("BUD", bud);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
