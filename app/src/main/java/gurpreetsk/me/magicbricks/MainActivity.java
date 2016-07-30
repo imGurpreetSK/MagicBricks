@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String TAG = "MainActivity";
 
-    Hashtable<String, Integer> city = new Hashtable<>();
-    Hashtable<String, Integer> locality = new Hashtable<>();
+    public Hashtable<String, Integer> city = new Hashtable<>();
+    public Hashtable<String, Integer> locality = new Hashtable<>();
     private ArrayList<String> cities, locations, roomSize, budget;
 
     @Override
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getHandles();
+        makeDS();
 
         TextView firstTV = new TextView(MainActivity.this);
         firstTV.setGravity(Gravity.CENTER);
@@ -78,21 +79,18 @@ public class MainActivity extends AppCompatActivity {
                 layoutParamsBot.setMarginEnd(100);
 
                 if (msg.length() < 15) {
+                    msg = msg.toLowerCase();
                     replyTV = new TextView(MainActivity.this);
-                    linearLayout.addView(replyTV, layoutParamsSender);
-                    replyTV.setGravity(Gravity.START);
-                    replyTV.setTextSize(18);
-                    replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
+                    reply = giveReply(msg);
+                    replyTV.setText(reply);
+                    checkMessage(msg.toLowerCase());
+                    replyTV.setTextSize(16);
+                    //replyTV.setBackgroundColor(Color.parseColor("#F0F4C3"));
+                    replyTV.setGravity(Gravity.LEFT);
                     replyTV.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC);
-                    replyTV.setText(msg);
+                    replyTV.setTextColor(Color.parseColor("#558B2F"));
+                    linearLayout.addView(replyTV, layoutParamsBot);
                 } else {
-
-                    createCityArrayList();
-                    createLocationsArrayList();
-                    createBudgetArrayList();
-                    createRoomArrayList();
-                    createLocalityHashtable();
-                    createCityHashtable();
 
                     final Intent intent = new Intent(MainActivity.this, MapsActivity.class);
 
@@ -139,12 +137,14 @@ public class MainActivity extends AppCompatActivity {
 
                     String needed;
                     String loc, siz, bud;
+                    String CITY = city.get(Splash.tellCity()).toString();
 
                     String replyString = "Please enter some data.";
                     if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = replyString;
                         intent.putExtra("NEED", "nothing");
                         intent.putExtra("SENT", "nothing");
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: nothing SENT: nothing", Toast.LENGTH_SHORT).show();
                     }
 
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", locationNeeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+ locationNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", cityNeeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !budgetneeded.equals("") && sizeNeeded.equals("")) {
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                         needed = "budget";
 //                        toBeSent = budgetneeded;
                         intent.putExtra("NEED", needed);
+                        intent.putExtra("BOTcity", CITY);
                         intent.putExtra("SENT", budgetneeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
@@ -178,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = sizeNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", sizeNeeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
@@ -186,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                         reply = "Finding houses in city " + cityNeeded + " in locality " + locationNeeded;
                         needed = "city and location";
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTLOC", locationNeeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
@@ -197,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+locationNeeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
@@ -206,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
@@ -213,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                         needed = "city and size";
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
@@ -224,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
@@ -231,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                         needed = "city and budget";
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
@@ -242,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                         needed = "city size location";
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
@@ -252,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                         needed = "city location budget";
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", budgetneeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
@@ -262,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
                         needed = "city budget size";
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+sizeNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
@@ -275,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded+" "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
@@ -293,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("LOC", loc);
                         intent.putExtra("SIZ", siz);
                         intent.putExtra("BUD", bud);
+                        intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
@@ -332,6 +341,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void makeDS() {
+
+        createCityArrayList();
+        createLocationsArrayList();
+        createBudgetArrayList();
+        createRoomArrayList();
+        createLocalityHashtable();
+        createCityHashtable();
 
     }
 
@@ -429,6 +449,88 @@ public class MainActivity extends AppCompatActivity {
         locality.put("thakur", 84834);
         locality.put("eta", 98493);
 //        locality.put("noida", 93788);     both in city and locality
+    }
+
+    private void checkMessage(String msg) {             //FOR Hi related
+
+        String CITY = city.get(Splash.tellCity()).toString();
+
+        switch (msg) {
+            case "1":
+            case "1.":
+            case "location": {
+                Toast.makeText(MainActivity.this, "Location" + CITY, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("BOTmsg", "location");
+                intent.putExtra("BOTcity", CITY);
+                startActivity(intent);
+                break;
+            }
+            case "a":
+            case "b":
+            case "c":
+            case "d":
+            case "5000":
+            case "<5000":
+            case "under 5000":
+            case "5000-10000":
+            case "b/w 5000-10000":
+            case "10000-15000":
+            case "b/w 10000-15000":
+            case "15000-20000":
+            case "b/w 15000-20000":
+            case ">20000":
+            case "above 20000":
+            case "20000": {
+                String budget = "<5000";
+                if (msg.length() == 1) {
+                    if (msg.equals("a")) budget = "5000";
+                    if (msg.equals("b")) budget = "10000";
+                    if (msg.equals("c")) budget = "15000";
+                    if (msg.equals("d")) budget = "25000";
+                } else if (msg.contains("5000") && msg.length() < 6) {
+                    budget = "5000";
+                } else if (msg.contains("10000")) {
+                    budget = "10000";
+                } else if (msg.contains("15000")) {
+                    budget = "15000";
+                }else if (msg.contains("20000")) {
+                    budget = "20000";
+                }else if (msg.contains("25000")) {
+                    budget = "25000";
+                }
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("BOTmsg", budget);
+                intent.putExtra("BOTcity", CITY);
+                Toast.makeText(MainActivity.this, budget + CITY, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+            }
+//            Toast.makeText(MainActivity.this, "Budget", Toast.LENGTH_SHORT).show();
+            case "1bhk":
+            case "2bhk":
+            case "3bhk":
+            case "1 bhk":
+            case "2 bhk":
+            case "3 bhk": {
+//            Toast.makeText(MainActivity.this, "BHK", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                if (msg.charAt(1) == ' ') {
+                    msg = msg.charAt(0) + "bhk";
+                }
+                intent.putExtra("BOTmsg", msg);
+                intent.putExtra("BOTcity", CITY);
+                Toast.makeText(MainActivity.this, msg + CITY, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+            }
+        }
+    }
+
+    private String giveReply(String msg) {
+
+        return Splash.returnData(msg);
+
     }
 
 }

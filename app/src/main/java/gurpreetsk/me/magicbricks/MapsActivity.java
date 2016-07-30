@@ -7,6 +7,7 @@ import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -62,7 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-       /* Location userloaction = Splash.tellLocation();
+      /*  Location userloaction = Splash.tellLocation();
         double userlon = userloaction.getLongitude();
         double userlat = userloaction.getLatitude();
         LatLng sydney = new LatLng(userlat, userlon);
@@ -139,7 +140,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     JSONArray resultarray = new JSONArray(resultstring);
                                     for (int i = 0; i < resultarray.length(); i++) {
                                         JSONObject res = resultarray.getJSONObject(i);
-                                        if(!res.getString("latLoc").equals("null")) {
+                                        if(res.has("latLoc")) {
                                             String lat = res.getString("latLoc");
                                             String lon = res.getString("longLoc");
                                             String contact = res.getString("contact");
@@ -578,8 +579,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public boolean onMarkerClick(Marker marker) {
                     final double longm = marker.getPosition().longitude;
+                    String cityDaman = getIntent().getExtras().getString("BOTcity");
+                    System.out.println(cityDaman);
                     StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                            "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct=2624&resultPerPage=16&searchType=1&cg=R&ty=10002",
+                            "http://hackathon.magicbricks.com:1208/property/mobileSearch?campCode=android&page=1&ct="+ cityDaman +"&resultPerPage=16&searchType=1&cg=R&ty=10002",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -594,7 +597,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             if (longi == longm) {
                                                 Toast.makeText(MapsActivity.this,"MArker clicked",Toast.LENGTH_LONG).show();
                                                 String contact = res.getString("contact");
-                                               /* String price = res.getString("price");
+                                                String price = res.getString("price");
                                                 String bathroom = res.getString("bathroom");
                                                 String city = res.getString("city");
                                                 String covArea = res.getString("covArea");
@@ -602,12 +605,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 String transType = res.getString("transType");
                                                 String mobile = res.getString("mobile");
                                                 String address = res.getString("address");
-                                                String locality = res.getString("locality");*/
+                                                String locality = res.getString("locality");
                                                 Dialog dialog = new Dialog(MapsActivity.this);
                                                 dialog.setTitle("Information");
                                                 dialog.setContentView(R.layout.dialog_layout);
                                                 TextView text = (TextView) dialog.findViewById(R.id.textView);
-                                                text.setText(contact);
+                                                text.setText(contact+"\n"+price+"\n"+bathroom+"\n"+city+"\n"+covArea+"\n"+ageOfConstruction+"\n"+transType+"\n"+mobile+"\n"+address+
+                                                        "\n"+locality);
                                                 dialog.show();
 
                                             }
