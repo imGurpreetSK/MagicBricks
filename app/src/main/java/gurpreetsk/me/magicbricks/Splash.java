@@ -26,9 +26,9 @@ import java.util.Hashtable;
 public class Splash extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "SPLASH.java";
-    private Hashtable<String, String> learning = new Hashtable<>();
+    private static Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
+    private static Location mLastLocation;
     Double latitude, longitude;
 
     @Override
@@ -107,6 +107,14 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
         Toast.makeText(Splash.this, "Connection Failed", Toast.LENGTH_SHORT).show();
     }
 
+    public static String returnData(String input) {
+        return learning.get(input);
+    }
+
+    public static Location tellLocation() {
+        return mLastLocation;
+    }
+
 
     private void learningDataDefine() {
 
@@ -116,18 +124,18 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
             public void run() {
                 //For custom query
                 learning.put("suggest", "Please enter your query\nTips: Keep it simple and include things like location, budget, rooms, etc.");
-                learning.put("find", "Please enter your query\nTips: Keep it simple and include things like location, budget, rooms, etc.");
-                learning.put("locate", "Please enter your query\nTips: Keep it simple and include things like location, budget, rooms, etc.");
-                learning.put("magic", "Please enter your query and wait for it \nTips: Keep it simple and include things like location, budget, rooms, etc.");
-
+//                learning.put("find", "Please enter your query\nTips: Keep it simple and include things like location, budget, rooms, etc.");
+//                learning.put("locate", "Please enter your query\nTips: Keep it simple and include things like location, budget, rooms, etc.");
+//                learning.put("magic", "Please enter your query and wait for it \nTips: Keep it simple and include things like location, budget, rooms, etc.");
 
                 //starting call to bot: level-0
-                learning.put("hi", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("hello", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("/hello", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("start", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("/start", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("bonjour", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("hi", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("hello", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("/hello", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("start", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("/start", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("bonjour", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("suggest", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
 
                 //level-1 calls
                 learning.put("1", "location");
@@ -158,7 +166,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("15000-20000", "Getting locations near you...");
                 learning.put("b/w 5000-10000", "Getting locations near you...");
                 learning.put("b/w 10000-15000", "Getting locations near you...");
-                learning.put("b/w 10000-20000", "Getting locations near you...");       //for budget details
+                learning.put("b/w 15000-20000", "Getting locations near you...");       //for budget details
 
                 learning.put("1bhk", "Getting locations near you...");
                 learning.put("2bhk", "Getting locations near you...");
@@ -167,11 +175,6 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("2 bhk", "Getting locations near you...");
                 learning.put("3 bhk", "Getting locations near you...");          //these 3 for space details
 
-
-                //whether available on rent or not
-                learning.put("rent", "rent");
-                learning.put("buy", "buy");
-
 //                Toast.makeText(Splash.this, "Learned", Toast.LENGTH_SHORT).show();
 
             }
@@ -179,5 +182,11 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
         startNextActivity();
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }
