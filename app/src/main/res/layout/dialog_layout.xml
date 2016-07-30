@@ -20,15 +20,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/name"/>
+                android:id="@+id/name"
+                android:layout_margin="5dp"
+                android:textSize="22dp"
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mobile"/>
+                android:id="@+id/mobile"
+                android:layout_margin="5dp"
+                android:textSize="22dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
@@ -36,35 +43,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/price" />
+        android:id="@+id/price"
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/bathroom" />
+        android:id="@+id/bathroom"
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/covArea" />
+        android:id="@+id/covArea"
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/age" />
+        android:id="@+id/age"
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/transtype" />
+        android:id="@+id/transtype"
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/city" />
+        android:id="@+id/city"
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:id="@+id/locality" />
+        android:id="@+id/locality"
+        android:textSize="18dp" />
 </LinearLayout>
