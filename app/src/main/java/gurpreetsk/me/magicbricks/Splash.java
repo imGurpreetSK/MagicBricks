@@ -28,7 +28,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
     private static final String TAG = "SPLASH.java";
     private Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
+    static Location mLastLocation;
     Double latitude, longitude;
 
     @Override
@@ -107,6 +107,9 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
         Toast.makeText(Splash.this, "Connection Failed", Toast.LENGTH_SHORT).show();
     }
 
+    public static Location tellLocation() {
+        return mLastLocation;
+    }
 
     private void learningDataDefine() {
 
