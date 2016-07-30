@@ -3,13 +3,16 @@ package gurpreetsk.me.magicbricks;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
+import android.media.Image;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -190,9 +193,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 String mobile = res.getString("mobile");
                                                 String address = res.getString("address");
                                                 String locality = res.getString("locality");
-                                                Dialog dialog = new Dialog(MapsActivity.this);
-                                                dialog.setTitle("Information");
+                                                Dialog dialog=new Dialog(MapsActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
                                                 dialog.setContentView(R.layout.dialog_layout);
+
+//                                                dialog.setTitle("Information");
+//                                                dialog.setContentView(R.layout.dialog_layout);
+                                                ImageView vrImage = (ImageView) dialog.findViewById(R.id.vriamge);
+                                                vrImage.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+
+                                                    }
+                                                });
+                                                vrImage.setOnLongClickListener(new View.OnLongClickListener() {
+                                                    @Override
+                                                    public boolean onLongClick(View view) {
+                                                        Intent intent = new Intent(MapsActivity.this, VRactivity.class);
+                                                        startActivity(intent);
+                                                        return true;
+                                                    }
+                                                });
                                                 TextView textname = (TextView) dialog.findViewById(R.id.name);
                                                 TextView textmob = (TextView) dialog.findViewById(R.id.mobile);
                                                 TextView textprice = (TextView) dialog.findViewById(R.id.price);
