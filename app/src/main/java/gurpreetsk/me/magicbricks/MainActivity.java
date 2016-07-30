@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
                 layoutParamsBot.setMarginStart(15);
                 layoutParamsBot.setMarginEnd(100);
                 replyTV = new TextView(MainActivity.this);
-                linearLayout.addView(inputTV, layoutParamsSender);
-                inputTV.setGravity(Gravity.START);
-                inputTV.setTextSize(18);
-                inputTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
-                inputTV.setText(msg);
+                linearLayout.addView(replyTV, layoutParamsSender);
+                replyTV.setGravity(Gravity.START);
+                replyTV.setTextSize(18);
+                replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
+                replyTV.setText(msg);
 
             }
         });
