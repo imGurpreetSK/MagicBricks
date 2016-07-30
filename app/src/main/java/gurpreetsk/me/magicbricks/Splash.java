@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 
 
 //activity gets user location and define basic bot learning and replies
@@ -25,7 +26,7 @@ import java.util.HashMap;
 public class Splash extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "SPLASH.java";
-    private HashMap<String, String> learning = new HashMap<>();
+    private Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Double latitude, longitude;
