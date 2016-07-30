@@ -18,11 +18,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.HashMap;
+import java.util.Hashtable;
+
+
+//activity gets user location and define basic bot learning and replies
 
 public class Splash extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "SPLASH.java";
-    private HashMap<String, String> learning = new HashMap<>();
+    private Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Double latitude, longitude;
@@ -163,14 +167,12 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("2 bhk", "Getting locations near you...");
                 learning.put("3 bhk", "Getting locations near you...");          //these 3 for space details
 
-                //level-3 calls
-
-
 
                 //whether available on rent or not
                 learning.put("rent", "rent");
                 learning.put("buy", "buy");
 
+//                Toast.makeText(Splash.this, "Learned", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -179,41 +181,3 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-learning.put("a", "Getting locations near you...");
-                learning.put("b", "Getting locations near you...");
-                learning.put("c", "Getting locations near you...");
-                learning.put("5000", "Getting locations near you...");
-                learning.put("<5000", "Getting locations near you...");
-                learning.put("less than 5000", "Getting locations near you...");
-                learning.put("5000-10000", "Getting locations near you...");
-                learning.put("b/w 5000-10000", "Getting locations near you...");
-                learning.put("10000-20000", "Getting locations near you...");
-                learning.put("b/w 10000-20000", "Getting locations near you...");
-                learning.put(">20000", "Getting matching locations near you...");
-                learning.put("above 20000", "Getting matching locations near you...");
-                learning.put("20000", "Getting matching locations near you...");       //these for budget options
-
-                learning.put("1bhk", "Getting locations near you...");
-                learning.put("2bhk", "Getting locations near you...");
-                learning.put("3bhk", "Getting locations near you...");
-                learning.put("1 bhk", "Getting locations near you...");
-                learning.put("2 bhk", "Getting locations near you...");
-                learning.put("3 bhk", "Getting locations near you...");          //these 3 for space details
-
- */
