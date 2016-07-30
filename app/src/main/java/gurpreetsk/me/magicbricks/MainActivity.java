@@ -78,13 +78,17 @@ public class MainActivity extends AppCompatActivity {
                 layoutParamsBot.setMarginEnd(100);
 
                 if (msg.length() < 15) {
+                    msg = msg.toLowerCase();
                     replyTV = new TextView(MainActivity.this);
-                    linearLayout.addView(replyTV, layoutParamsSender);
-                    replyTV.setGravity(Gravity.START);
-                    replyTV.setTextSize(18);
-                    replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
+                    reply = giveReply(msg);
+                    replyTV.setText(reply);
+                    checkMessage(msg.toLowerCase());
+                    replyTV.setTextSize(16);
+                    //replyTV.setBackgroundColor(Color.parseColor("#F0F4C3"));
+                    replyTV.setGravity(Gravity.LEFT);
                     replyTV.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC);
-                    replyTV.setText(msg);
+                    replyTV.setTextColor(Color.parseColor("#558B2F"));
+                    linearLayout.addView(replyTV, layoutParamsBot);
                 } else {
 
                     createCityArrayList();
@@ -429,6 +433,83 @@ public class MainActivity extends AppCompatActivity {
         locality.put("thakur", 84834);
         locality.put("eta", 98493);
 //        locality.put("noida", 93788);     both in city and locality
+    }
+
+    private void checkMessage(String msg) {             //FOR Hi related
+
+        switch (msg) {
+            case "1":
+            case "1.":
+            case "location": {
+//            Toast.makeText(MainActivity.this, "Location", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("BOTmsg", "location");
+                startActivity(intent);
+                break;
+            }
+            case "a":
+            case "b":
+            case "c":
+            case "d":
+            case "5000":
+            case "<5000":
+            case "under 5000":
+            case "5000-10000":
+            case "b/w 5000-10000":
+            case "10000-15000":
+            case "b/w 10000-15000":
+            case "15000-20000":
+            case "b/w 15000-20000":
+            case ">20000":
+            case "above 20000":
+            case "20000": {
+                String budget = "<5000";
+                if (msg.length() == 1) {
+                    if (msg.equals("a")) budget = "5000";
+                    if (msg.equals("b")) budget = "10000";
+                    if (msg.equals("c")) budget = "15000";
+                    if (msg.equals("d")) budget = "25000";
+                } else if (msg.contains("5000") && msg.length() < 6) {
+                    budget = "5000";
+                } else if (msg.contains("10000")) {
+                    budget = "10000";
+                } else if (msg.contains("15000")) {
+                    budget = "15000";
+                }else if (msg.contains("20000")) {
+                    budget = "20000";
+                }else if (msg.contains("25000")) {
+                    budget = "25000";
+                }
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("BOTmsg", budget);
+                Toast.makeText(MainActivity.this, budget, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+            }
+//            Toast.makeText(MainActivity.this, "Budget", Toast.LENGTH_SHORT).show();
+            case "1bhk":
+            case "2bhk":
+            case "3bhk":
+            case "1 bhk":
+            case "2 bhk":
+            case "3 bhk": {
+//            Toast.makeText(MainActivity.this, "BHK", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                if (msg.charAt(1) == ' ') {
+                    msg = msg.charAt(0) + "bhk";
+                }
+                intent.putExtra("BOTmsg", msg);
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+            }
+        }
+    }
+
+    private String giveReply(String msg) {
+
+        return Splash.returnData(msg);
+
     }
 
 }
