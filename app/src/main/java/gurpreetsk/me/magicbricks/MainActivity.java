@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 linearLayout.addView(inputTV, layoutParamsSender);
                 inputTV.setGravity(Gravity.END);
                 inputTV.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                inputTV.setTextSize(18);
+                inputTV.setTextSize(16);
                 inputTV.setTextColor(Color.parseColor("#0277BD"));         //Use #558B2F for bot reply
                 inputTV.setText(msg);
                 msgET.setText("");
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 //WHAT WE SAY
                 LinearLayout.LayoutParams layoutParamsBot = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParamsBot.setMarginStart(15);
-                layoutParamsBot.setMarginEnd(100);
+//                layoutParamsBot.setMarginEnd(100);
 
                 if (msg.length() < 15) {
                     msg = msg.toLowerCase();
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                     replyTV = new TextView(MainActivity.this);
                     linearLayout.addView(replyTV, layoutParamsSender);
                     replyTV.setGravity(Gravity.START);
-                    replyTV.setTextSize(18);
+                    replyTV.setTextSize(16);
                     replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
                     replyTV.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC);
-                    replyTV.setText(msg);
+//                    replyTV.setText(msg);
 
                     String locationNeeded = "", cityNeeded = "";
                     String budgetneeded = "", sizeNeeded = "";
@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     String replyString = "Please enter some data.";
                     if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = replyString;
+                        needed = "nothing";
                         intent.putExtra("NEED", "nothing");
                         intent.putExtra("SENT", "nothing");
                         intent.putExtra("BOTcity", CITY);
@@ -316,26 +317,27 @@ public class MainActivity extends AppCompatActivity {
                     replyTV.setTextColor(Color.parseColor("#558B2F"));
                     linearLayout.addView(replyTV, layoutParamsBot);
 
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("Found results")
-                                    .setMessage("Click to go to the results")
-                                    .setPositiveButton("GO", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
+                    if(!intent.getExtras().get("NEED").equals("nothing")) {
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("Found results")
+                                        .setMessage("Click to go to the results")
+                                        .setPositiveButton("GO", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
 //                                        checkMessage(msg.toLowerCase());
 
-                                            startActivity(intent);
-                                            Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
-                                        }
-                                    })
-                                    .setIcon(android.R.drawable.ic_menu_view)
-                                    .show();
-                        }
-                    }, 2000);
-
+                                                startActivity(intent);
+                                                Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setIcon(android.R.drawable.ic_menu_view)
+                                        .show();
+                            }
+                        }, 2000);
+                    }
                 }
 
             }
