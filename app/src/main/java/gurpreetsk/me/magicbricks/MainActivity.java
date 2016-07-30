@@ -330,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
                                         .setPositiveButton("GO", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
 //                                        checkMessage(msg.toLowerCase());
-
+                                                intent.putExtra("SUGGEST", "SUGGEST");
                                                 startActivity(intent);
                                                 Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
                                             }
@@ -506,6 +506,10 @@ public class MainActivity extends AppCompatActivity {
                     budget = "20000";
                 }else if (msg.contains("25000")) {
                     budget = "25000";
+                }else if (msg.contains("30000")) {
+                    budget = "30000";
+                }else if (msg.contains("40000")) {
+                    budget = "40000";
                 }
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 intent.putExtra("BOTmsg", budget);

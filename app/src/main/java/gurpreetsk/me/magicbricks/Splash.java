@@ -237,6 +237,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
     public static void setCity(String city){
         citySplash = city;
+        Log.v(TAG, citySplash);
     }
 
     @Override
