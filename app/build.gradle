@@ -26,4 +26,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:9.2.0'
     compile 'com.google.android.gms:play-services-maps:9.2.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
 }

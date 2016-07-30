@@ -31,7 +31,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//        learningDataDefine();
+        learningDataDefine();
 
         displayLocation();
 
@@ -101,4 +101,23 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(Splash.this, "Connection Failed", Toast.LENGTH_SHORT).show();
     }
-}
+
+
+
+    private void learningDataDefine() {
+
+        //starting call to bot: level-0
+        learning.put("hi", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+        learning.put("hello", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+        learning.put("/hello", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+        learning.put("start", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+        learning.put("/start", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+        learning.put("bonjour", "Hello!  Welcome to PropertyBot. Please enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+
+
+
+
+    }
+
+
+    }
