@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("BOTcity", CITY);
                         Toast.makeText(MainActivity.this, "NEED: nothing SENT: nothing", Toast.LENGTH_SHORT).show();
                     }
-
+//ae haalo
                     else if (cityNeeded.equals("") && !locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded;
                         needed = "location";
