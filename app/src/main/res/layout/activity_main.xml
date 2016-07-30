@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="gurpreetsk.me.MagicBricks.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".99"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"/>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_weight=".01"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/msgET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight=".8"
+            android:hint="Type message here"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/sendBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+            android:layout_weight=".2"
+            android:text="Send" />
+
+    </LinearLayout>
+
+</LinearLayout>
