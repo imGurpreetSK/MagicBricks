@@ -29,6 +29,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
     private static Hashtable<String, String> learning = new Hashtable<>();
     private GoogleApiClient mGoogleApiClient;
     private static Location mLastLocation;
+    private static String citySplash = "noida";
     Double latitude, longitude;
 
     @Override
@@ -129,13 +130,59 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 //                learning.put("magic", "Please enter your query and wait for it \nTips: Keep it simple and include things like location, budget, rooms, etc.");
 
                 //starting call to bot: level-0
-                learning.put("hi", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+                learning.put("hi", "Hello!  Welcome to PropertyBot.\nPlease enter your city");
                 learning.put("hello", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("/hello", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("start", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("/start", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("bonjour", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("suggest", "Hello!  Welcome to PropertyBot.\nPlease enter your query or select one:\n1. Location\n2. Budget\n3. No. of rooms");
+
+                learning.put("delhi", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "delhi";
+                learning.put("hyderabad", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "hyderabad";
+                learning.put("ahmedabad", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "ahmedabad";
+                learning.put("gurgaon", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "gurgaon";
+                learning.put("banglore", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "banglore";
+                learning.put("mumbai", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "mumbai";
+                learning.put("pune", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "pune";
+                learning.put("pune", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "pune";
+                learning.put("noida", "Hello!  Welcome to PropertyBot.\n" +
+                        "Please enter your query or select one:\n" +
+                        "1. Location\n" +
+                        "2. Budget\n" +
+                        "3. No. of rooms");     citySplash = "noida";
 
                 //level-1 calls
                 learning.put("1", "location");
@@ -182,6 +229,10 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
         startNextActivity();
 
+    }
+
+    public static String tellCity(){
+        return citySplash;
     }
 
     @Override
