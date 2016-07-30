@@ -65,12 +65,23 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams layoutParamsBot = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParamsBot.setMarginStart(15);
                 layoutParamsBot.setMarginEnd(100);
-                replyTV = new TextView(MainActivity.this);
-                linearLayout.addView(replyTV, layoutParamsSender);
-                replyTV.setGravity(Gravity.START);
-                replyTV.setTextSize(18);
-                replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
-                replyTV.setText(msg);
+
+                if(msg.length()<15) {
+                    replyTV = new TextView(MainActivity.this);
+                    linearLayout.addView(replyTV, layoutParamsSender);
+                    replyTV.setGravity(Gravity.START);
+                    replyTV.setTextSize(18);
+                    replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
+                    replyTV.setText(msg);
+                } else{
+                    msg = "LONGER THAN 15";
+                    replyTV = new TextView(MainActivity.this);
+                    linearLayout.addView(replyTV, layoutParamsSender);
+                    replyTV.setGravity(Gravity.START);
+                    replyTV.setTextSize(18);
+                    replyTV.setTextColor(Color.parseColor("#558B2F"));         //Use #558B2F for bot reply
+                    replyTV.setText(msg);
+                }
 
             }
         });
