@@ -1,33 +1,20 @@
 package gurpreetsk.me.magicbricks;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Pair;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.vr.sdk.base.GvrActivity;
-import com.google.vr.sdk.base.GvrView;
-import com.google.vr.sdk.widgets.common.VrEventListener;
 import com.google.vr.sdk.widgets.pano.VrPanoramaEventListener;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
+import com.google.vr.sdk.widgets.pano.VrPanoramaView.Options;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -35,7 +22,7 @@ import java.io.InputStream;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class VRactivity extends GvrActivity {
+public class VRactivity extends Activity {
 
     public boolean loadImageSuccessful;
     /**
@@ -45,7 +32,7 @@ public class VRactivity extends GvrActivity {
     /**
      * Configuration information for the panorama.
      **/
-    private VrPanoramaView.Options panoOptions = new VrPanoramaView.Options();
+    private Options panoOptions = new Options();
     private ImageLoaderTask backgroundImageLoaderTask;
     VrPanoramaView panoWidgetView;
 
@@ -89,12 +76,12 @@ public class VRactivity extends GvrActivity {
                 Log.i(TAG, "Using file " + fileUri.toString());
             }
 
-            panoOptions.inputType = intent.getIntExtra("inputType", VrPanoramaView.Options.TYPE_MONO);
+            panoOptions.inputType = intent.getIntExtra("inputType", Options.TYPE_MONO);
             Log.i(TAG, "Options.inputType = " + panoOptions.inputType);
         } else {
             Log.i(TAG, "Intent is not ACTION_VIEW. Using default pano image.");
             fileUri = null;
-            panoOptions.inputType = VrPanoramaView.Options.TYPE_MONO;
+            panoOptions.inputType = Options.TYPE_MONO;
         }
 
         // Load the bitmap in a background thread to avoid blocking the UI thread. This operation can
@@ -132,29 +119,24 @@ public class VRactivity extends GvrActivity {
         super.onDestroy();
     }
 
-    /**
-     * Helper class to manage threading.
-     */
-    class ImageLoaderTask extends AsyncTask<Pair<Uri, VrPanoramaView.Options>, Void, Boolean> {
+    class ImageLoaderTask extends AsyncTask<Pair<Uri, Options>, Void, Boolean> {
 
-        /**
-         * Reads the bitmap from disk in the background and waits until it's loaded by pano widget.
-         */
         @Override
-        protected Boolean doInBackground(Pair<Uri, VrPanoramaView.Options>... fileInformation) {
+        protected Boolean doInBackground(Pair<Uri, Options>... fileInformation) {
             VrPanoramaView.Options panoOptions = null;  // It's safe to use null VrPanoramaView.Options.
             InputStream istr = null;
             AssetManager assetManager = getAssets();
             try {
                 istr = assetManager.open("andes.jpg");
                 panoOptions = new VrPanoramaView.Options();
-                panoOptions.inputType = VrPanoramaView.Options.TYPE_MONO;
+                panoOptions.inputType = Options.TYPE_MONO;
+                panoWidgetView.loadImageFromBitmap(BitmapFactory.decodeStream(istr), panoOptions);
+
             } catch (IOException e) {
                 Log.e(TAG, "Could not decode default bitmap: " + e);
                 return false;
             }
 
-            panoWidgetView.loadImageFromBitmap(BitmapFactory.decodeStream(istr), panoOptions);
             try {
                 istr.close();
             } catch (IOException e) {
@@ -165,21 +147,13 @@ public class VRactivity extends GvrActivity {
         }
     }
 
-    /**
-     * Listen to the important events from widget.
-     */
     private class ActivityEventListener extends VrPanoramaEventListener {
-        /**
-         * Called by pano widget on the UI thread when it's done loading the image.
-         */
+
         @Override
         public void onLoadSuccess() {
             loadImageSuccessful = true;
         }
 
-        /**
-         * Called by pano widget on the UI thread on any asynchronous error.
-         */
         @Override
         public void onLoadError(String errorMessage) {
             loadImageSuccessful = false;
