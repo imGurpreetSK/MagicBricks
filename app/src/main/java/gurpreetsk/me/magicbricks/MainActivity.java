@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         reply = replyString;
                         intent.putExtra("NEED", "nothing");
                         intent.putExtra("SENT", "nothing");
+                        Toast.makeText(MainActivity.this, "NEED: nothing SENT: nothing", Toast.LENGTH_SHORT).show();
                     }
 
                     else if (cityNeeded.equals("") && !locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", locationNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+ locationNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded;
@@ -160,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", cityNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in budget " + budgetneeded;
@@ -167,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = budgetneeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", budgetneeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && !sizeNeeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded;
@@ -174,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
 //                        toBeSent = sizeNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", sizeNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
 
@@ -183,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTLOC", locationNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded + " of size " + sizeNeeded;
@@ -191,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+locationNeeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded + " in budget " + budgetneeded;
@@ -199,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " of size " + sizeNeeded;
@@ -207,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }  else if (cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in locality " + locationNeeded + " in budget " + budgetneeded;
@@ -215,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " in budget " + budgetneeded;
@@ -223,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
 
@@ -234,14 +245,17 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " in locality "+ locationNeeded +" in budget " + budgetneeded;
                         needed = "city location budget";
 //                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
-                        intent.putExtra("SENTLOC", cityNeeded);
+                        intent.putExtra("SENTCIT", cityNeeded);
+                        intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", budgetneeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses in city " + cityNeeded + " of size "+ sizeNeeded +" in budget " + budgetneeded;
@@ -251,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("SENTCIT", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+sizeNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }else if (cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded + " at location " + locationNeeded +" in budget " + budgetneeded;
@@ -260,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded+" "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
 
@@ -277,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("LOC", loc);
                         intent.putExtra("SIZ", siz);
                         intent.putExtra("BUD", bud);
+                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
 //                        reply = replyString;
                     }
 
