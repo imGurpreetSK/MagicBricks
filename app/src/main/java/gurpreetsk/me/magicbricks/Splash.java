@@ -47,7 +47,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
 
     private void startNextActivity() {
 
-        Intent intent = new Intent(Splash.this, RentOrBuy.class);
+        Intent intent = new Intent(Splash.this, RenterOrRentee.class);
         //intent.putExtra();
         startActivity(intent);
 
@@ -136,7 +136,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("start", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("/start", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("bonjour", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("suggest", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+//                learning.put("suggest", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
 
                 learning.put("delhi", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
@@ -173,7 +173,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                         "1. Location\n" +
                         "2. Budget\n" +
                         "3. No. of rooms");
-                learning.put("pune", "Hello!  Welcome to PropertyBot.\n" +
+                learning.put("kolkata", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
                         "1. Location\n" +
                         "2. Budget\n" +
@@ -211,9 +211,17 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("5000-10000", "Getting locations near you...");
                 learning.put("10000-15000", "Getting locations near you...");
                 learning.put("15000-20000", "Getting locations near you...");
+                learning.put("20000-25000", "Getting locations near you...");
+                learning.put("25000-30000", "Getting locations near you...");
+                learning.put("30000-35000", "Getting locations near you...");
+                learning.put("35000-40000", "Getting locations near you...");
                 learning.put("b/w 5000-10000", "Getting locations near you...");
                 learning.put("b/w 10000-15000", "Getting locations near you...");
                 learning.put("b/w 15000-20000", "Getting locations near you...");
+                learning.put("b/w 20000-25000", "Getting locations near you...");
+                learning.put("b/w 25000-30000", "Getting locations near you...");
+                learning.put("b/w 30000-35000", "Getting locations near you...");
+                learning.put("b/w 35000-40000", "Getting locations near you...");
                 learning.put("25000", "Getting locations near you...");
                 learning.put("30000", "Getting locations near you...");
                 learning.put("35000", "Getting locations near you...");
