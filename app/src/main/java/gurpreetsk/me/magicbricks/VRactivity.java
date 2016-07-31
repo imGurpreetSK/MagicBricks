@@ -15,10 +15,6 @@ package gurpreetsk.me.magicbricks;
  * limitations under the License.
  */
 
-import com.google.vr.sdk.widgets.pano.VrPanoramaEventListener;
-import com.google.vr.sdk.widgets.pano.VrPanoramaView;
-import com.google.vr.sdk.widgets.pano.VrPanoramaView.Options;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -26,12 +22,13 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Pair;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.vr.sdk.widgets.pano.VrPanoramaEventListener;
+import com.google.vr.sdk.widgets.pano.VrPanoramaView;
+import com.google.vr.sdk.widgets.pano.VrPanoramaView.Options;
 
 import java.io.File;
 import java.io.FileInputStream;

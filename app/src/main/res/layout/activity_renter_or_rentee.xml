@@ -10,27 +10,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="gurpreetsk.me.magicbricks.RentOrBuy">
-
-    <info.hoang8f.widget.FButton
+    tools:context="gurpreetsk.me.magicbricks.RenterOrRentee">
+    <Button
         android:layout_width="300dp"
         android:layout_height="120dp"
-        fbutton:buttonColor="@color/fbutton_color_clouds"
-        fbutton:cornerRadius="5dp"
-        fbutton:shadowEnabled="true"
-        android:onClick="RentButtonClicked"
-        android:text="Rent House"
-        android:layout_marginBottom="5dp"
-        fbutton:shadowHeight="2dp" />
+        android:text="Tenant"
+        android:onClick="TenantButtonClicked"/>
 
-    <info.hoang8f.widget.FButton
+    <Button
         android:layout_width="300dp"
         android:layout_height="120dp"
-        fbutton:buttonColor="@color/fbutton_color_clouds"
-        fbutton:cornerRadius="5dp"
-        fbutton:shadowEnabled="true"
-        android:onClick="BuyButtonClicked"
-        android:text="Buy House"
-        fbutton:shadowHeight="2dp" />
-
+        android:text="Owner"
+        android:onClick="OwnerButtonClicked"/>
 </LinearLayout>

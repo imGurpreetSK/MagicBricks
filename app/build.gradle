@@ -26,6 +26,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.google.android.gms:play-services-location:9.2.0'
     compile 'com.google.android.gms:play-services-maps:9.2.0'
+    compile 'com.google.firebase:firebase-database:9.2.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.android.support:support-v4:24.1.1'
@@ -36,3 +37,5 @@ dependencies {
     compile 'info.hoang8f:fbutton:1.0.5'
 
 }
+apply plugin: 'com.google.gms.google-services'
+
