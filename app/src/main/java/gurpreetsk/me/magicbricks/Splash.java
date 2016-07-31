@@ -136,7 +136,7 @@ public class Splash extends AppCompatActivity implements GoogleApiClient.Connect
                 learning.put("start", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("/start", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
                 learning.put("bonjour", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
-                learning.put("suggest", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
+//                learning.put("suggest", "Hello!  Welcome to PropertyBot. Please enter your query\nor select one:\n1. Location\n2. Budget\n3. No. of rooms");
 
                 learning.put("delhi", "Hello!  Welcome to PropertyBot.\n" +
                         "Please enter your query or select one:\n" +
