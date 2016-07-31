@@ -35,7 +35,7 @@ dependencies {
     compile project(':panowidget')
     compile project(':base')
     compile 'info.hoang8f:fbutton:1.0.5'
-
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 apply plugin: 'com.google.gms.google-services'
 

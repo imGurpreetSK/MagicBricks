@@ -40,7 +40,7 @@ public class GetOwnerDetailsActivity extends AppCompatActivity {
     int noOfRooms = 0, expectedRent, budget = 5000;
     boolean isSharing ;
 //    String pincode = "201301";
-    Double lon, lat;
+    Double lon = 28.566350, lat = 77.318255;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRefUserData = database.getReference("Data");
@@ -60,8 +60,11 @@ public class GetOwnerDetailsActivity extends AppCompatActivity {
         });
 
         Location loc = Splash.tellLocation();
-        lat = loc.getLatitude();
-        lon = loc.getLongitude();
+        if(loc!=null)
+            Log.i(TAG, "loc null");
+        //lat = loc.getLatitude();
+        lon = 28.566350; lat = 77.318255;
+        //lon = loc.getLongitude();
 
     }
 

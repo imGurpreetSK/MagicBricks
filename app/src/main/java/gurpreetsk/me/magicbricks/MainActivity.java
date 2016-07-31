@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     public Hashtable<String, Integer> city = new Hashtable<>();
     public Hashtable<String, Integer> locality = new Hashtable<>();
+    public Hashtable< Integer, String> cityInv = new Hashtable<>();
+    public Hashtable<Integer, String> localityInv = new Hashtable<>();
     private ArrayList<String> cities, locations, roomSize, budget;
 
     @Override
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         firstTV.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         firstTV.setTextColor(Color.parseColor("#FF4081"));
         firstTV.setTextSize(16);
-        firstTV.setText("Welcome to the Hack\n Enter hi or query to start");
+        firstTV.setText("Welcome to PropertyBot\n Enter hi or query to start");
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.addView(firstTV);
 
@@ -76,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 //WHAT WE SAY
                 LinearLayout.LayoutParams layoutParamsBot = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParamsBot.setMarginStart(15);
-//                layoutParamsBot.setMarginEnd(100);
 
                 if (msg.length() < 15) {
                     msg = msg.toLowerCase();
@@ -85,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                     replyTV.setText(reply);
                     checkMessage(msg.toLowerCase());
                     replyTV.setTextSize(16);
-                    //replyTV.setBackgroundColor(Color.parseColor("#F0F4C3"));
                     replyTV.setGravity(Gravity.LEFT);
                     replyTV.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC);
                     replyTV.setTextColor(Color.parseColor("#558B2F"));
@@ -109,25 +109,21 @@ public class MainActivity extends AppCompatActivity {
 
                     for (String cty : cities) {
                         if (msg.contains(cty)) {
-                            //Toast.makeText(MainActivity.this, "Finding houses in " + location, Toast.LENGTH_SHORT).show();
                             cityNeeded = city.get(cty).toString();
                         }
                     }
                     for (String location : locations) {
                         if (msg.contains(location)) {
-                            //Toast.makeText(MainActivity.this, "Finding houses in " + location, Toast.LENGTH_SHORT).show();
                             locationNeeded = locality.get(location).toString();
                         }
                     }
                     for (String bud : budget) {
                         if (msg.contains(bud)) {
-                            //Toast.makeText(MainActivity.this, "Finding houses in budget range " + bud, Toast.LENGTH_SHORT).show();
                             budgetneeded = bud;
                         }
                     }
                     for (String size : roomSize) {
                         if (msg.contains(size)) {
-                            //Toast.makeText(MainActivity.this, "Finding houses of size " + size, Toast.LENGTH_SHORT).show();
                             sizeNeeded = size;
                         }
                     }
@@ -142,157 +138,113 @@ public class MainActivity extends AppCompatActivity {
                     String replyString = "Please enter some data.";
                     if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = replyString;
-                        needed = "nothing";
                         intent.putExtra("NEED", "nothing");
                         intent.putExtra("SENT", "nothing");
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: nothing SENT: nothing", Toast.LENGTH_SHORT).show();
                     }
 
                     else if (cityNeeded.equals("") && !locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
-                        reply = "Finding houses in locality " + locationNeeded;
+                        reply = "Finding houses in locality " + localityInv.get(Integer.parseInt(locationNeeded));
                         needed = "location";
-//                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", locationNeeded);
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+ locationNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && sizeNeeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded));
                         needed = "city";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", cityNeeded);
                         intent.putExtra("BOTcity", cityNeeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !budgetneeded.equals("") && sizeNeeded.equals("")) {
                         reply = "Finding houses in budget " + budgetneeded;
                         needed = "budget";
-//                        toBeSent = budgetneeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", CITY);
                         intent.putExtra("SENT", budgetneeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && budgetneeded.equals("") && !sizeNeeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded;
                         needed = "size";
-//                        toBeSent = sizeNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENT", sizeNeeded);
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }
 
                     else if (!cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && budgetneeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded + " in locality " + locationNeeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded)) + " in locality " + localityInv.get(Integer.parseInt(locationNeeded));
                         needed = "city and location";
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTLOC", locationNeeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
-                        reply = "Finding houses in locality " + locationNeeded + " of size " + sizeNeeded;
+                        reply = "Finding houses in locality " + localityInv.get(Integer.parseInt(locationNeeded)) + " of size " + sizeNeeded;
                         needed = "location and size";
-//                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+locationNeeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     } else if (cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
                         reply = "Finding houses of size " + sizeNeeded + " in budget " + budgetneeded;
                         needed = "size and budget";
-//                        toBeSent = sizeNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded + " of size " + sizeNeeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded)) + " of size " + sizeNeeded;
                         needed = "city and size";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }  else if (cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
-                        reply = "Finding houses in locality " + locationNeeded + " in budget " + budgetneeded;
+                        reply = "Finding houses in locality " + localityInv.get(Integer.parseInt(locationNeeded)) + " in budget " + budgetneeded;
                         needed = "location and budget";
-//                        toBeSent = locationNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded + " in budget " + budgetneeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded)) + " in budget " + budgetneeded;
                         needed = "city and budget";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }
 
                     else if (!cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && budgetneeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded + " in budget " + budgetneeded +" of size "+sizeNeeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded)) + " in budget " + budgetneeded +" of size "+sizeNeeded;
                         needed = "city size location";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (!cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded + " in locality "+ locationNeeded +" in budget " + budgetneeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded)) + " in locality "+ localityInv.get(Integer.parseInt(locationNeeded)) +" in budget " + budgetneeded;
                         needed = "city location budget";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", budgetneeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (!cityNeeded.equals("") && locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {
-                        reply = "Finding houses in city " + cityNeeded + " of size "+ sizeNeeded +" in budget " + budgetneeded;
+                        reply = "Finding houses in city " + cityInv.get(Integer.parseInt(cityNeeded)) + " of size "+ sizeNeeded +" in budget " + budgetneeded;
                         needed = "city budget size";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("BOTcity", cityNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+sizeNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }else if (cityNeeded.equals("") && !locationNeeded.equals("") && sizeNeeded.equals("") && !budgetneeded.equals("")) {
-                        reply = "Finding houses of size " + sizeNeeded + " at location " + locationNeeded +" in budget " + budgetneeded;
+                        reply = "Finding houses of size " + sizeNeeded + " at location " + localityInv.get(Integer.parseInt(locationNeeded)) +" in budget " + budgetneeded;
                         needed = "location budget size";
-//                        toBeSent = cityNeeded;
                         intent.putExtra("NEED", needed);
                         intent.putExtra("SENTLOC", locationNeeded);
                         intent.putExtra("SENTSIZ", sizeNeeded);
                         intent.putExtra("SENTBUD", budgetneeded);
                         intent.putExtra("BOTcity", CITY);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+sizeNeeded+" "+locationNeeded+" "+budgetneeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }
 
 
                     else if (!cityNeeded.equals("") && !locationNeeded.equals("") && !sizeNeeded.equals("") && !budgetneeded.equals("")) {              //MAIN FOCUS HERE
-                        reply = "Finding houses in " + cityNeeded + " locality " + locationNeeded + " of size " + sizeNeeded + " in budget " + budgetneeded;
+                        reply = "Finding houses in " + cityInv.get(Integer.parseInt(cityNeeded)) + " locality " + localityInv.get(Integer.parseInt(locationNeeded)) + " of size " + sizeNeeded + " in budget " + budgetneeded;
                         needed = "all";
-//                        toBeSent = "all";
                         loc = locationNeeded;
                         siz = sizeNeeded;
                         bud = budgetneeded;
@@ -303,8 +255,6 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("SIZ", siz);
                         intent.putExtra("BUD", bud);
                         intent.putExtra("BOTcity", cityNeeded);
-                        Toast.makeText(MainActivity.this, "NEED: "+needed+" SENT: "+cityNeeded+" "+locationNeeded+" "+budgetneeded+" "+sizeNeeded, Toast.LENGTH_SHORT).show();
-//                        reply = replyString;
                     }
 
                     //locationNeeded, sizeNeeded, budgetNeeded to be send
@@ -330,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
 //                                        checkMessage(msg.toLowerCase());
                                                 intent.putExtra("EXTRA", "SUGGEST");
                                                 startActivity(intent);
-                                                Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(MainActivity.this, "start intent", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .setIcon(android.R.drawable.ic_menu_view)
@@ -354,6 +304,8 @@ public class MainActivity extends AppCompatActivity {
         createRoomArrayList();
         createLocalityHashtable();
         createCityHashtable();
+        getCityFromKey();
+        getLocalityFromKey();
 
     }
 
@@ -456,6 +408,39 @@ public class MainActivity extends AppCompatActivity {
 //        locality.put("noida", 93788);     both in city and locality
     }
 
+    void getCityFromKey() {
+        cityInv.put(2060, "hyderabad");
+        cityInv.put(2624, "delhi");
+        cityInv.put(2690, "ahmedabad");
+        cityInv.put(2951, "gurgaon");
+        cityInv.put(3327, "bangalore");
+        cityInv.put(4320, "mumbai");
+        cityInv.put(4378, "pune");
+        cityInv.put(6903, "kolkata");
+        cityInv.put(7045, "noida");
+    }
+
+    void getLocalityFromKey() {
+        localityInv.put(80185, "miyapur");
+        localityInv.put(85822, "adibatla");
+        localityInv.put(53514, "subhash");
+        localityInv.put(78193, "sangam");
+        localityInv.put(54469, "panchvati");
+        localityInv.put(84435, "prahlad");
+        localityInv.put(78710, "palam");
+        localityInv.put(86514, "sector");
+        localityInv.put(80455, "nelamangala");
+        localityInv.put(80060, "sarjapur");
+        localityInv.put(78839, "bandra");
+        localityInv.put(80084, "malad");
+        localityInv.put(82343, "kalyani");
+        localityInv.put(79726, "viman");
+        localityInv.put(79304, "rajarhat");
+        localityInv.put(84834, "thakur");
+        localityInv.put(98493, "eta");
+//        locality.put("noida", 93788);     both in city and locality
+    }
+
     private void checkMessage(String msg) {             //FOR Hi related
 
         String CITY = city.get(Splash.tellCity()).toString();
@@ -468,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
             case "1":
             case "1.":
             case "location": {
-            Toast.makeText(MainActivity.this, "Location" + CITY, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, "Location" + CITY, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 intent.putExtra("what", "location");
                 intent.putExtra("BOTmsg", "location");
@@ -517,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("what", "budget");
                 intent.putExtra("BOTmsg", budget);
                 intent.putExtra("BOTcity", CITY);
-                Toast.makeText(MainActivity.this, budget + CITY, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, budget + CITY, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
             }
@@ -537,7 +522,7 @@ public class MainActivity extends AppCompatActivity {
                         "at", "bhk");
                 intent.putExtra("BOTmsg", msg);
                 intent.putExtra("BOTcity", CITY);
-                Toast.makeText(MainActivity.this, msg + CITY, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, msg + CITY, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 break;
             }

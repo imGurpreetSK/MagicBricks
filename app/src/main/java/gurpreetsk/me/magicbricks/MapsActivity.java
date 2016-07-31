@@ -31,6 +31,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,6 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String address;
     private String transType;
     private String id;
+    private String imgUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -239,6 +241,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             address = res.getString("address");
                                             locality = res.getString("locality");
                                             id = res.getString("id");
+                                            imgUrl = res.getString("imgUrl");
                                             dialog(id);
 
                                         }
@@ -280,6 +283,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final Dialog dialog=new Dialog(MapsActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.setContentView(R.layout.dialog_layout);
         ImageView imageView = (ImageView) dialog.findViewById(R.id.vriamge);
+        Picasso.with(this).load(imgUrl).placeholder(R.mipmap.download).into(imageView);
         imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
