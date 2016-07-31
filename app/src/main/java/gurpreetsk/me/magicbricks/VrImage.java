@@ -173,7 +173,7 @@ public class VrImage extends Activity {
                 try {
                     istr = assetManager.open("andes.jpg");
                     panoOptions = new VrPanoramaView.Options();
-                    panoOptions.inputType = VrPanoramaView.Options.TYPE_STEREO_OVER_UNDER;
+                    panoOptions.inputType = Options.TYPE_MONO;
                 } catch (IOException e) {
                     Log.e(TAG, "Could not decode default bitmap: " + e);
                     return false;

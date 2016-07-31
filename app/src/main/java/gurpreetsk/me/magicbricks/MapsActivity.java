@@ -280,11 +280,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final Dialog dialog=new Dialog(MapsActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.setContentView(R.layout.dialog_layout);
         ImageView imageView = (ImageView) dialog.findViewById(R.id.vriamge);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MapsActivity.this,VrImage.class);
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, VrImage.class);
                 startActivity(intent);
+                return false;
             }
         });
         TextView textname = (TextView) dialog.findViewById(R.id.name);
