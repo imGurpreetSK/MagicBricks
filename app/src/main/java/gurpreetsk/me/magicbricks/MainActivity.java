@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 inputTV.setGravity(Gravity.END);
                 inputTV.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 inputTV.setTextSize(16);
-                inputTV.setTextColor(Color.parseColor("#0277BD"));         //Use #558B2F for bot reply
+                inputTV.setTextColor(Color.parseColor("#0277BD"));//Use #558B2F for bot reply
                 inputTV.setText(msg);
                 msgET.setText("");
 

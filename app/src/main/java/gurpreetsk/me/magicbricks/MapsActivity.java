@@ -12,6 +12,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -278,6 +279,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void dialog(final String id){
         final Dialog dialog=new Dialog(MapsActivity.this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.setContentView(R.layout.dialog_layout);
+        ImageView imageView = (ImageView) dialog.findViewById(R.id.vriamge);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this,VrImage.class);
+                startActivity(intent);
+            }
+        });
         TextView textname = (TextView) dialog.findViewById(R.id.name);
         TextView textmob = (TextView) dialog.findViewById(R.id.mobile);
         TextView textprice = (TextView) dialog.findViewById(R.id.price);
